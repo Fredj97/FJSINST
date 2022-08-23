@@ -1,4 +1,4 @@
-# Project 3 - *Name of App Here*
+# Project 3 - *FJSInsta*
 
 **Name of your app** is a photo sharing app similar to Instagram but using Parse as its backend.
 
@@ -27,9 +27,9 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src="https://submissions.us-east-1.linodeobjects.com/android_university/JH1QprUN.gif" />
+<img src='https://submissions.us-east-1.linodeobjects.com/android_university/JH1QprUN.gif' title='video Walkthrough' widdth=' ' 
+     alt='video walkthrough'/>
 
-GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
