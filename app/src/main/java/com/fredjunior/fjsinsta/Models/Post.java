@@ -16,6 +16,7 @@ public class Post extends ParseObject {
         return getString(KEY_DESCRIPTION);
     }
     public void setDescription(String description){
+
         put(KEY_DESCRIPTION, description);
     }
     public ParseFile getImage(){
@@ -27,9 +28,11 @@ public class Post extends ParseObject {
         put(KEY_IMAGE,parseFile);
     }
     public ParseUser getUser(){
-        return getParseUser(KEY_USER);
+        return
+                getParseUser(KEY_USER);
     }
     public void setUser(ParseUser user){
+
         put(KEY_USER,user);
     }
         }

@@ -33,8 +33,20 @@
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:layout_marginStart="5dp"
         android:layout_marginTop="100dp"
-        android:text="Login" />
+        android:layout_weight="1"
+        android:backgroundTint="#00FFEF"
+        android:text="LOG IN" />
+
+    <Button
+        android:id="@+id/btnSignUp"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnLogin"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="12dp"
+        android:layout_weight="1"
+        android:backgroundTint="#34c924"
+        android:text="SIGN UP" />
 </RelativeLayout>

@@ -1,9 +1,11 @@
 package com.fredjunior.fjsinsta;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -18,7 +20,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.fredjunior.fjsinsta.Models.Post;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -29,31 +30,96 @@ import com.parse.SaveCallback;
 import java.io.File;
 import java.util.List;
 
+import com.fredjunior.fjsinsta.Models.Post;
+
 public class MainActivity extends AppCompatActivity {
 
-    public final String TAG= "MainActivity";
-    public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 42;
-    private EditText etDescription;
-    private Button btnCaptureImage;
-    private ImageView ivPostImage;
-    private Button btnSubmit;
-    private File photoFile;
-    private String photoFileName=  "photo.jpg";
+    String TAG= "MainActivity";
+    public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1034;
+    public String photoFileName=  "photo.jpg";
+     EditText etDescription;
+     ImageView ivPostImage;
+     Button btnSubmit;
+     File photoFile;
+     ImageView TakePic;
+     ImageView Account;
+     ImageView Homepage;
+
+
+
+    public void showAlertDialogButtonClicked(View view ) {
+
+        //setup the alert builder
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        //add the buttons
+        builder.setPositiveButton("TAKE PICTURE", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+
+                LaunchCamera();
+            }
+        });
+        //create and show the alert dialog
+        //Creating dialog box
+        AlertDialog alert = builder.create();
+        //Setting the title manually
+        //alert.setTitle("AlertDialogExample");
+        alert . show ();
+    }
+
+
+
+
+    public void showAlertDialogButtonClicked1(View view ) {
+
+        //setup the alert builder
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        //add the buttons
+        builder.setPositiveButton("LOGOOUT", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                ParseUser.logOut();
+                ParseUser currentUser = ParseUser.getCurrentUser();
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+        //create and show the alert dialog
+        //Creating dialog box
+        AlertDialog alert = builder.create();
+        //Setting the title manually
+        //alert.setTitle("AlertDialogExample");
+        alert . show ();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         etDescription=findViewById(R.id.etDescription);
-        btnCaptureImage=findViewById(R.id.btnCaptureImage);
         ivPostImage=findViewById(R.id.ivPostImage);
         btnSubmit=findViewById(R.id.btnSubmit);
+        TakePic=findViewById(R.id.TakePic);
+        Homepage=findViewById(R.id.HomePage);
+        Account=findViewById(R.id.Account);
 
 
-        btnCaptureImage.setOnClickListener(new View.OnClickListener() {
+        TakePic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              launchCamera();
+                showAlertDialogButtonClicked(view);
+                if(ivPostImage!=null){
+                    etDescription.setVisibility(View.VISIBLE);
+                    btnSubmit.setVisibility(View.VISIBLE);
+                }
+
+            }
+        });
+
+        Account.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showAlertDialogButtonClicked1(view);
+
             }
         });
         //queryPosts();
@@ -65,9 +131,10 @@ public class MainActivity extends AppCompatActivity {
                  Toast.makeText(MainActivity.this, "Description cannit be empty", Toast.LENGTH_SHORT).show();
                  return;
              }
-             
+
              if(photoFile == null || ivPostImage.getDrawable() == null){
                  Toast.makeText(MainActivity.this, "There is no image!", Toast.LENGTH_SHORT).show();
+                 return;
              }
                 ParseUser currentUser = ParseUser.getCurrentUser();
                 savePost(Description, currentUser, photoFile);
@@ -75,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void launchCamera() {
+    private void LaunchCamera(){
         // create Intent to take a picture and return control to the calling application
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Create a File reference for future access
@@ -107,8 +174,6 @@ public class MainActivity extends AppCompatActivity {
                 //Load the taken image into a preview
                 ivPostImage.setImageBitmap(takenImage);
 
-            } else {//Result as failure
-                Toast.makeText(this, "Picture wasn't taken", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -125,7 +190,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // Return the file target for the photo based on filename
-        return new File(mediaStorageDir.getPath() + File.separator + fileName);
+        File file= new File(mediaStorageDir.getPath()+ File.separator+ fileName);
+        return file;
 
     }
 
