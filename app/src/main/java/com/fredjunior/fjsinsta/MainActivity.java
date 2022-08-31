@@ -1,39 +1,29 @@
 package com.fredjunior.fjsinsta;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.FileProvider;
+
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.util.Log;
+
+import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
+
 import android.widget.Toast;
 
-import com.fredjunior.fjsinsta.Models.Post;
-import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.parse.FindCallback;
-import com.parse.ParseException;
-import com.parse.ParseFile;
-import com.parse.ParseQuery;
-import com.parse.ParseUser;
-import com.parse.SaveCallback;
 
-import java.io.File;
-import java.util.List;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import com.parse.ParseUser;
+
 
 import fragments.ComposeFragment;
 import fragments.PostsFragment;
@@ -45,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
     final FragmentManager fragmentManager = getSupportFragmentManager();
     private BottomNavigationView bottomNavigationView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,18 +52,17 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.action_home:
                         //TODO: Update fragment
                         Toast.makeText(MainActivity.this, "Home!", Toast.LENGTH_SHORT).show();
-                        fragment=new PostsFragment();
+                        fragment = new PostsFragment();
                         break;
                     case R.id.action_compose:
                         Toast.makeText(MainActivity.this, "Compose!", Toast.LENGTH_SHORT).show();
-                        fragment=new ComposeFragment();
+                        fragment = new ComposeFragment();
                         break;
+
                     case R.id.action_profile:
                     default:
-                        //TODO: Update fragment
-
                         Toast.makeText(MainActivity.this, "Profile!", Toast.LENGTH_SHORT).show();
-                        fragment=new ProfileFragment();
+                        fragment = new ProfileFragment();
                         break;
                 }
                 fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
@@ -82,5 +72,42 @@ public class MainActivity extends AppCompatActivity {
         });
         // Set default selection
         bottomNavigationView.setSelectedItemId(R.id.action_home);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
     }
+
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.action_logout, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_logout1) {
+
+            //setup the alert builder
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            //add the buttons
+            builder.setPositiveButton("LOGOOUT", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    ParseUser.logOut();
+                    ParseUser currentUser = ParseUser.getCurrentUser();
+                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                }
+            });
+            //create and show the alert dialog
+            //Creating dialog box
+            AlertDialog alert = builder.create();
+            //Setting the title manually
+            //alert.setTitle("AlertDialogExample");
+            alert.show();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+
+    }
+
 }

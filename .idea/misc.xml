@@ -3,6 +3,27 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Owner/Downloads/FJSINST/app/src/main/res/drawable/ic_baseline_login_24.xml" value="0.1675" />
+        <entry key="..\:/Users/Owner/Downloads/FJSINST/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.1675" />
+        <entry key="..\:/Users/Owner/Downloads/FJSINST/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1965" />
+        <entry key="..\:/Users/Owner/Downloads/FJSINST/app/src/main/res/drawable/round.xml" value="0.1965" />
+        <entry key="..\:/Users/Owner/Downloads/FJSINST/app/src/main/res/layout/activity_login.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Owner/Downloads/FJSINST/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Owner/Downloads/FJSINST/app/src/main/res/layout/fragment_posts.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Owner/Downloads/FJSINST/app/src/main/res/layout/item_post.xml" value="0.25" />
+        <entry key="..\:/Users/Owner/Downloads/FJSINST/app/src/main/res/menu/action_logout.xml" value="0.203125" />
+        <entry key="..\:/Users/Owner/Downloads/FJSINST/app/src/main/res/menu/menu_bottom_navigation.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Owner/FJSINST/app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.1965" />
+        <entry key="..\:/Users/Owner/FJSINST/app/src/main/res/drawable/ic_baseline_add_to_photos_24.xml" value="0.1965" />
+        <entry key="..\:/Users/Owner/FJSINST/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.1965" />
+        <entry key="..\:/Users/Owner/FJSINST/app/src/main/res/drawable/ic_baseline_near_me_24.xml" value="0.2115" />
+        <entry key="..\:/Users/Owner/FJSINST/app/src/main/res/layout/Logout.xml" value="0.33" />
+        <entry key="..\:/Users/Owner/FJSINST/app/src/main/res/layout/activity_login.xml" value="0.33" />
+        <entry key="..\:/Users/Owner/FJSINST/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Owner/FJSINST/app/src/main/res/layout/fragment_compose.xml" value="0.1" />
+        <entry key="..\:/Users/Owner/FJSINST/app/src/main/res/layout/fragment_posts.xml" value="0.5" />
+        <entry key="..\:/Users/Owner/FJSINST/app/src/main/res/layout/item_post.xml" value="0.5" />
+        <entry key="..\:/Users/Owner/FJSINST/app/src/main/res/menu/menu_bottom_navigation.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/STH Fred-Junior/AndroidStudioProjects/FJSInsta/app/src/main/res/layout/activity_login.xml" value="0.2234375" />
         <entry key="..\:/Users/STH Fred-Junior/AndroidStudioProjects/FJSInsta/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/STH Fred-Junior/FJSINST/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1025" />

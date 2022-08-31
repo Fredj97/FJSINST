@@ -2,6 +2,8 @@ package fragments;
 
 import static android.app.Activity.RESULT_OK;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -24,18 +26,15 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.fredjunior.fjsinsta.MainActivity;
+import com.fredjunior.fjsinsta.LoginActivity;
 import com.fredjunior.fjsinsta.Models.Post;
 import com.fredjunior.fjsinsta.R;
-import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
-import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import java.io.File;
-import java.util.List;
 
 
 public class ComposeFragment extends Fragment {
@@ -43,12 +42,35 @@ public class ComposeFragment extends Fragment {
     public static final String TAG= "ComposeFragment";
     public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 42;
     private EditText etDescription;
-    private Button btnCaptureImage;
+    private ImageView btnCaptureImage;
     private ImageView ivPostImage;
     private Button btnSubmit;
 
+
     private File photoFile;
     private String photoFileName=  "photo.jpg";
+
+    public void showAlertDialogButtonClicked(View view ) {
+
+        //setup the alert builder
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        //add the buttons
+        builder.setPositiveButton("TAKE PICTURE", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+
+                launchCamera();
+            }
+        });
+        //create and show the alert dialog
+        //Creating dialog box
+        AlertDialog alert = builder.create();
+        //Setting the title manually
+        //alert.setTitle("AlertDialogExample");
+        alert . show ();
+        }
+
+
+
 
 
     public ComposeFragment() {
@@ -76,8 +98,13 @@ public class ComposeFragment extends Fragment {
 
         btnCaptureImage.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                launchCamera();
+            public void onClick(View view){
+                showAlertDialogButtonClicked(view);
+                if(ivPostImage!=null){
+                    etDescription.setVisibility(View.VISIBLE);
+                    btnSubmit.setVisibility(View.VISIBLE);
+                }
+
             }
         });
         //queryPosts();
